@@ -1,8 +1,12 @@
 <?php
 
+function custom_sanitize($input) {
+	return escapeshellarg($input);
+}
+
 if( isset( $_POST[ 'Submit' ]  ) ) {
 	// Get input
-	$target = $_REQUEST[ 'ip' ];
+	$target = custom_sanitize($_REQUEST[ 'ip' ]);
 
 	// Determine OS and execute the ping command.
 	if( stristr( php_uname( 's' ), 'Windows NT' ) ) {
